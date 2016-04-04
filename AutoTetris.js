@@ -190,10 +190,7 @@ tetrisGame.ShiftRight = function()//FULLY FUNCTIONAL
   //check if anyblocks are at the edge of board
  if(this.dotLocation % 10 < 9 && this.block2 % 10 < 9 && this.block3%10 < 9 && this.block4%10 < 9){
    //set all blocks to have -1 pos in the array in order to avoid tripping on each others values
-    this.currentState[this.dotLocation] = -1;
-    this.currentState[this.block2] = -1;
-    this.currentState[this.block3] = -1;
-    this.currentState[this.block4] = -1;
+    this.UnsetBlocks();
     if(this.currentState[this.dotLocation+1] == -1 && this.currentState[this.block2+1] == -1 && this.currentState[this.block3+1] == -1 && this.currentState[this.block4+1] == -1){
       this.dotLocation ++;
       this.block2++;
@@ -202,15 +199,13 @@ tetrisGame.ShiftRight = function()//FULLY FUNCTIONAL
       //**NOTE**block locations are not set within this method must set them following this method
     }
   }
+  this.SetBlocks();
 };//FULLY IMPLEMENTED SHIFTRIGHT
 
 tetrisGame.ShiftLeft = function()//FULLY FUNCTIONAL
 {
   if(this.dotLocation % 10 > 0 && this.block2 % 10 > 0 && this.block3%10 > 0 && this.block4%10 > 0){
-     this.currentState[this.dotLocation] = -1;
-     this.currentState[this.block2] = -1;
-     this.currentState[this.block3] = -1;
-     this.currentState[this.block4] = -1;
+     this.UnsetBlocks();
      if(this.currentState[this.dotLocation-1] == -1 && this.currentState[this.block2-1] == -1 && this.currentState[this.block3-1] == -1 && this.currentState[this.block4-1] == -1){
        this.dotLocation --;
        this.block2--;
@@ -229,10 +224,7 @@ tetrisGame.Rotate = function()//FULLY FUNCTIONAL
   if(this.dotLocation > 10)//will gaurantee shapes dont rotate and go above array
   {
     //set all active blocks to empty elements to avoid tripping over themselves
-    this.currentState[this.dotLocation] = -1;
-    this.currentState[this.block2] = -1;
-    this.currentState[this.block3] = -1;
-    this.currentState[this.block4] = -1;
+    this.UnsetBlocks();
     var didRotate = 0;
     if(this.type == 0)//
     {
